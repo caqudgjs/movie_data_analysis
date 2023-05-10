@@ -1,3 +1,7 @@
+# movie_data_analysis
+## csv파일 출처 각종오류고치기 링크
+
+
 vs코드 csv파일 한글깨짐 고치기
 https://scshim.tistory.com/306
 
