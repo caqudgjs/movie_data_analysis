@@ -1,65 +1,70 @@
 import pandas as pd
 
-# Read in the data from a CSV file
+# CSV 파일에서 데이터를 읽어옵니다.
 df = pd.read_csv('dt.csv', encoding='cp949')
 
-# Extract the province and brand columns
+# 'province'와 'brand' 열을 추출합니다.
 province_brand = df[['province', 'brand']]
 
-# Filter the brand column to only include rows containing "롯데시네마"
-lotte_cinema_brands = province_brand[province_brand['brand'].str.contains('롯데시네마')].copy()
+# 'brand' 열에서 "롯데시네마"를 포함하는 행만 필터링합니다.
+lotte_cinema_brands = province_brand[province_brand['brand'].str.contains(
+    '롯데시네마')].copy()
 
-# Create a new column for the categorized brand
+# 'categorized_brand'라는 새로운 열을 생성하고, "롯데시네마"로 값을 할당합니다.
 lotte_cinema_brands['categorized_brand'] = '롯데시네마'
 
-# Group by province and categorized brand, then count the number of occurrences
-brand_counts = lotte_cinema_brands.groupby(['province', 'categorized_brand']).size().reset_index(name='counts')
+# 'province'와 'categorized_brand'로 그룹화한 후, 각 그룹별로 개수를 계산합니다.
+brand_counts = lotte_cinema_brands.groupby(
+    ['province', 'categorized_brand']).size().reset_index(name='counts')
 
-# Filter out the '기타' category
+# 'categorized_brand'가 '기타'인 행을 필터링합니다.
 brand_counts = brand_counts[brand_counts['categorized_brand'] != '기타']
 
-# Print the resulting dataframe
+# 결과 DataFrame을 출력합니다.
 print(brand_counts)
 
-# Read in the data from a CSV file
+
+# CSV 파일에서 데이터를 읽어옵니다.
 df = pd.read_csv('dt.csv', encoding='cp949')
 
-# Extract the province and brand columns
+# 'province'와 'brand' 열을 추출합니다.
 province_brand = df[['province', 'brand']]
 
-# Filter the brand column to only include rows containing "CGV"
+# 'brand' 열에서 "CGV"를 포함하는 행만 필터링합니다.
 cgv_brands = province_brand[province_brand['brand'].str.contains('CGV')]
 
-# Create a new column for the categorized brand
+# 'categorized_brand'라는 새로운 열을 생성하고, "CGV"로 값을 할당합니다.
 cgv_brands['categorized_brand'] = 'CGV'
 
-# Group by province and categorized brand, then count the number of occurrences
-brand_counts = cgv_brands.groupby(['province', 'categorized_brand']).size().reset_index(name='counts')
+# 'province'와 'categorized_brand'로 그룹화한 후, 각 그룹별로 개수를 계산합니다.
+brand_counts = cgv_brands.groupby(
+    ['province', 'categorized_brand']).size().reset_index(name='counts')
 
-# Filter out the '기타' category
+# 'categorized_brand'가 '기타'인 행을 필터링합니다.
 brand_counts = brand_counts[brand_counts['categorized_brand'] != '기타']
 
-# Print the resulting dataframe
+# 결과 DataFrame을 출력합니다.
 print(brand_counts)
 
 
-# Read in the data from a CSV file
+# CSV 파일에서 데이터를 읽어옵니다.
 df = pd.read_csv('dt.csv', encoding='cp949')
 
-# Extract the province and brand columns
+# 'province'와 'brand' 열을 추출합니다.
 province_brand = df[['province', 'brand']]
 
-# Filter the brand column to only include rows containing "메가박스"
+# 'brand' 열에서 "메가박스"를 포함하는 행만 필터링합니다.
 megabox_brands = province_brand[province_brand['brand'].str.contains('메가박스')]
 
-# Create a new column for the categorized brand
+# 'categorized_brand'라는 새로운 열을 생성하고, "메가박스"로 값을 할당합니다.
 megabox_brands['categorized_brand'] = '메가박스'
 
-# Group by province and categorized brand, then count the number of occurrences
-brand_counts = megabox_brands.groupby(['province', 'categorized_brand']).size().reset_index(name='counts')
+# 'province'와 'categorized_brand'로 그룹화한 후, 각 그룹별로 개수를 계산합니다.
+brand_counts = megabox_brands.groupby(
+    ['province', 'categorized_brand']).size().reset_index(name='counts')
 
-# Filter out the '기타' category
+# 'categorized_brand'가 '기타'인 행을 필터링합니다.
 brand_counts = brand_counts[brand_counts['categorized_brand'] != '기타']
 
-# Print the resulting dataframe
+# 결과 DataFrame을 출력합니다.
 print(brand_counts)

@@ -1,26 +1,29 @@
 import pandas as pd
 
-# Read in the data from a CSV file
+# CSV 파일을 'cp949' 인코딩으로 읽어옵니다.
 df = pd.read_csv('dt.csv', encoding='cp949')
 
-# Extract the province and brand columns
+# DataFrame에서 'province'와 'brand' 열을 추출합니다.
 province_brand = df[['province', 'brand']]
 
-# Filter the brand column to only include rows containing "메가박스"
+# 'brand' 열에서 '메가박스'를 포함하는 행을 필터링합니다.
 megabox_brands = province_brand[province_brand['brand'].str.contains('메가박스')]
 
-# Create a new column for the categorized brand
+# 'categorized_brand' 열에 '메가박스' 값을 할당합니다.
 megabox_brands['categorized_brand'] = '메가박스'
 
-# Group by province and categorized brand, then count the number of occurrences
-brand_counts = megabox_brands.groupby(['province', 'categorized_brand']).size().reset_index(name='counts')
+# 'province'와 'categorized_brand'로 데이터를 그룹화하고 각 그룹의 크기/개수를 계산합니다.
+brand_counts = megabox_brands.groupby(
+    ['province', 'categorized_brand']).size().reset_index(name='counts')
 
-# Filter out the '기타' category
+# 'categorized_brand' 값이 '기타'인 행을 필터링합니다.
 brand_counts = brand_counts[brand_counts['categorized_brand'] != '기타']
 
-# Calculate the total count of Megabox theaters in the country
+# 메가박스 영화관의 총 개수를 계산합니다.
 total_count = brand_counts['counts'].sum()
 
-# Print the resulting dataframe and total count
+# 각 지역별 브랜드 개수를 출력합니다.
 print(brand_counts)
-print("Total number of Megabox theaters in the country:", total_count)
+
+# 전국 메가박스 영화관의 총 개수를 출력합니다.
+print("전국 메가박스 영화관의 총 개수:", total_count)
